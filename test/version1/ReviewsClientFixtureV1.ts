@@ -18,6 +18,8 @@ export class ReviewsClientFixtureV1 {
     }
 
     testCrudOperations(done) {
+        let review1:ReviewV1;
+
         async.series([
             // Create one Review
             (callback) => {
@@ -59,6 +61,7 @@ export class ReviewsClientFixtureV1 {
 
                         assert.isObject(page);
                         assert.lengthOf(page.data, 2);
+                        review1 = _.clone(page.data[0]);
 
                         callback();
                     }
@@ -111,6 +114,44 @@ export class ReviewsClientFixtureV1 {
                         assert.isUndefined(rating.rating_4_count);
                         assert.isUndefined(rating.rating_5_count);
                         assert.equal(rating.total_count, 2);
+
+                        callback();
+                    }
+                );
+            },
+            // Update review
+            (callback) => {
+                review1.rating = 5;
+                review1.testimonial = "Update Test msg";
+                this._client.updateReview(
+                    null,
+                    review1,
+                    (err, rating) => {
+                        assert.isNull(err);
+
+                        assert.isObject(rating);
+                        assert.equal(rating.rating_0_count, 0);
+                        assert.isUndefined(rating.rating_1_count);
+                        assert.isUndefined(rating.rating_2_count);
+                        assert.equal(rating.rating_3_count, 1);
+                        assert.isUndefined(rating.rating_4_count);
+                        assert.equal(rating.rating_5_count, 1);
+                        assert.equal(rating.total_count, 2);
+
+                        callback();
+                    }
+                );
+            },
+            // Get Review by id
+            (callback) => {
+                this._client.getReviewById(
+                    null,
+                    review1.id,
+                    (err, review) => {
+                        assert.isNull(err);
+
+                        assert.isObject(review);
+                        TestModel.assertEqualReviewV1(review, review1);
 
                         callback();
                     }

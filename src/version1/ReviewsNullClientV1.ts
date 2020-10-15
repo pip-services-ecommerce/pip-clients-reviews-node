@@ -34,6 +34,11 @@ export class ReviewsNullClientV1 implements IReviewsClientV1 {
         callback(null, null);
     }
 
+    updateReview(correlationId: string, review: ReviewV1,
+        callback: (err: any, rating: RatingV1) => void): void {
+        callback(null, null);
+    }
+
     reportHelpful(correlationId: string, reviewId: string, partyId: string,
         callback: (err: any, review: ReviewV1) => void): void {
         callback(null, null);

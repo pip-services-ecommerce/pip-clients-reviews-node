@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReviewsHttpClientV1 = void 0;
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_rpc_node_1 = require("pip-services3-rpc-node");
 class ReviewsHttpClientV1 extends pip_services3_rpc_node_1.CommandableHttpClient {
@@ -33,6 +34,11 @@ class ReviewsHttpClientV1 extends pip_services3_rpc_node_1.CommandableHttpClient
     }
     submitReview(correlationId, review, callback) {
         this.callCommand('submit_review', correlationId, {
+            review: review,
+        }, callback);
+    }
+    updateReview(correlationId, review, callback) {
+        this.callCommand('update_review', correlationId, {
             review: review,
         }, callback);
     }

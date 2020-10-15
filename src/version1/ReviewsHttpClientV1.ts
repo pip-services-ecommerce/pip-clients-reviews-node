@@ -76,6 +76,17 @@ export class ReviewsHttpClientV1 extends CommandableHttpClient implements IRevie
         );
     }
 
+    updateReview(correlationId: string, review: ReviewV1, callback: (err: any, rating: RatingV1) => void): void {
+        this.callCommand(
+            'update_review',
+            correlationId,
+            {
+                review: review,
+            },
+            callback
+        );
+    }
+
     reportHelpful(correlationId: string, reviewId: string, partyId: string, callback: (err: any, review: ReviewV1) => void): void {
         this.callCommand(
             'report_helpful',

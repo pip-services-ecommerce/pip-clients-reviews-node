@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReviewsDirectClientV1 = void 0;
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services3_commons_node_2 = require("pip-services3-commons-node");
 const pip_services3_rpc_node_1 = require("pip-services3-rpc-node");
@@ -41,6 +42,13 @@ class ReviewsDirectClientV1 extends pip_services3_rpc_node_1.DirectClient {
     submitReview(correlationId, review, callback) {
         let timing = this.instrument(correlationId, 'reviews.submit_review');
         this._controller.submitReview(correlationId, review, (err, rating) => {
+            timing.endTiming();
+            callback(err, rating);
+        });
+    }
+    updateReview(correlationId, review, callback) {
+        let timing = this.instrument(correlationId, 'reviews.update_review');
+        this._controller.updateReview(correlationId, review, (err, rating) => {
             timing.endTiming();
             callback(err, rating);
         });

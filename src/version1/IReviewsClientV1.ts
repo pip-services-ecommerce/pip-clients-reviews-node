@@ -22,6 +22,9 @@ export interface IReviewsClientV1 {
     submitReview(correlationId: string, review: ReviewV1, 
         callback: (err: any, rating: RatingV1) => void): void;
 
+    updateReview(correlationId: string, review: ReviewV1, 
+            callback: (err: any, rating: RatingV1) => void): void;
+
     reportHelpful(correlationId: string, reviewId: string, partyId: string,
         callback: (err: any, review: ReviewV1) => void): void;
 

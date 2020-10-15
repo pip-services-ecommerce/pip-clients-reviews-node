@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReviewsMemoryClientV1 = void 0;
 let _ = require('lodash');
 const pip_services3_commons_node_1 = require("pip-services3-commons-node");
 const pip_services_reviews_node_1 = require("pip-services-reviews-node");
@@ -40,6 +41,9 @@ class ReviewsMemoryClientV1 {
     }
     submitReview(correlationId, review, callback) {
         this._controller.submitReview(correlationId, review, callback);
+    }
+    updateReview(correlationId, review, callback) {
+        this._controller.updateReview(correlationId, review, callback);
     }
     reportHelpful(correlationId, reviewId, partyId, callback) {
         this._controller.reportHelpful(correlationId, reviewId, partyId, callback);

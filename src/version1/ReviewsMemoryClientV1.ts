@@ -72,6 +72,11 @@ export class ReviewsMemoryClientV1 implements IReviewsClientV1 {
         this._controller.submitReview(correlationId, review, callback);
     }
 
+    updateReview(correlationId: string, review: ReviewV1,
+        callback: (err: any, rating: RatingV1) => void): void {
+        this._controller.updateReview(correlationId, review, callback);
+    }
+
     reportHelpful(correlationId: string, reviewId: string, partyId: string,
         callback: (err: any, review: ReviewV1) => void): void {
         this._controller.reportHelpful(correlationId, reviewId, partyId, callback);

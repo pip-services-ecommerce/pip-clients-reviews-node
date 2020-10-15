@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReviewsNullClientV1 = void 0;
 class ReviewsNullClientV1 {
     getReviews(correlationId, filter, paging, sorting, callback) {
         callback(null, null);
@@ -14,6 +15,9 @@ class ReviewsNullClientV1 {
         callback(null, null);
     }
     submitReview(correlationId, review, callback) {
+        callback(null, null);
+    }
+    updateReview(correlationId, review, callback) {
         callback(null, null);
     }
     reportHelpful(correlationId, reviewId, partyId, callback) {

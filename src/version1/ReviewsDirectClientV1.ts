@@ -65,6 +65,15 @@ export class ReviewsDirectClientV1 extends DirectClient<any> implements IReviews
         });
     }
 
+    updateReview(correlationId: string, review: ReviewV1, 
+        callback: (err: any, rating: RatingV1) => void): void {
+        let timing = this.instrument(correlationId, 'reviews.update_review');
+        this._controller.updateReview(correlationId, review, (err, rating) => {
+            timing.endTiming();
+            callback(err, rating);
+        });
+    }
+
     reportHelpful(correlationId: string, reviewId: string, partyId: string, 
         callback: (err: any, review: ReviewV1) => void): void {
         let timing = this.instrument(correlationId, 'reviews.report_helpful');
